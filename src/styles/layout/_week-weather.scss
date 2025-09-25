@@ -1,0 +1,7 @@
+@use '../base/variables' as *;
+@use '../module/mixins' as *;
+
+.l-week-weather{
+  @include section();
+  padding: 1rem 0;
+}

@@ -1,0 +1,6 @@
+@use '../base/variables' as *;
+@use '../module/mixins' as *;
+
+.l-main-weather{
+  @include section();
+}

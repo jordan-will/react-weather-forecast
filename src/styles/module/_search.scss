@@ -1,0 +1,22 @@
+@use '../base/variables' as *;
+@use './mixins' as *;
+
+$bd-radius: 0.8rem;
+
+.m-search{
+  @include display-flex($direction: row);
+  width: 100%;
+
+  &__input{
+    @include input();
+    width: 100%;
+    border-radius: $bd-radius 0 0 $bd-radius;
+  }
+
+  &__btn{
+    @include btn($bg: $secondary);
+    border: none;
+    border-radius: 0 $bd-radius $bd-radius 0;
+    padding: 0.7rem;
+  }
+}

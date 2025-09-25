@@ -1,0 +1,38 @@
+@use '../base/variables' as *;
+
+@mixin display-flex($direction: column, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin input() {
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.2rem;
+  border: 0.05rem solid $text-muted;
+  border: none;
+  outline: none;
+  color: $secondary;
+}
+
+@mixin btn($bg: $primary, $color: #fff) {
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  border: none;
+  background-color: $bg;
+  color: $color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@mixin section() {
+  width: 96%;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: $tertiary;
+}
