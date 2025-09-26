@@ -13,7 +13,7 @@
   border: 0.05rem solid $text-muted;
   border: none;
   outline: none;
-  color: $secondary;
+  color: $text-muted;
 }
 
 @mixin btn($bg: $primary, $color: #fff) {

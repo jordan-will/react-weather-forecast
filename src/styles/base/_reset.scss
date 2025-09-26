@@ -16,6 +16,13 @@ html, body {
 body {
   font-family: sans-serif;
   background-color: $primary;
+  background: linear-gradient(
+    135deg,
+    $primary 0%,
+    #7b5ce0 50%,
+    #ffffff 100%
+  );
 }
+
 
 

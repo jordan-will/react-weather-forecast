@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Card } from "@components/Card"
+import { Message } from "@components/Message";
 import { Search } from "@components/Search"
+import { useWeatherAPI } from "hooks/useWeatherAPI";
+import { getFiveDays } from "utils/getFiveDays";
 
-const data = [
+const dataTest = [
   { id: 1, day: "Sun", icon: "☀️", temperature: '19/20Cº', weather: 'Sky Clear' },
   { id: 2, day: "Mon", icon: "🌤️", temperature: '21/20Cº', weather: 'Storm Thunder' },
   { id: 3, day: "Tue", icon: "🌧️", temperature: '17/20Cº', weather: 'Raining' },
@@ -10,47 +14,61 @@ const data = [
 ]
 
 const App = () => {
+
+  const [city, setCity] = useState<string | null>(null);
+  const { data, data5Days, loading, error } = useWeatherAPI({ city: city || undefined });
+
   return (
     <main className="l-main">
 
       <header className="m-header">
         <h1 className="m-header__title">Weather Forecast</h1>
-        <Search />
+        <Search setCityName={setCity}/>
       </header>
 
-      <section className="l-main-weather">
+      <Message type={error ? 'error' : (loading ? 'loading' : null)} showMessage={error || loading} />
+
+      {data && <section className="l-main-weather">
         <Card>
-          <h1 className="m-card__title">Hell de Janeiro</h1>
-          <span className="m-card__temperature">29º</span>
-          <span className="m-card__weather">Céu limpo</span>
+          <h1 className="m-card__title">{data?.name}</h1>
+          <span className="m-card__temperature">
+            <img
+              className="m-card__info--icon"
+              src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
+            />
+            {data?.main.temp} °C
+          </span>
+          <span className="m-card__weather">{data?.weather[0].description}</span>
           <div className="m-card__info">
-            <span>Thermal sensaction: 20º</span>
-            <span>Humidy: 51%</span>
-            <span>Pressurre: 40 atm</span>
+            <span>Feels like: {data?.main.feels_like} °C</span>
+            <span>Humidity: {data?.main.humidity} %</span>
+            <span>Pressure: {data?.main.pressure} hPa</span>
           </div>
         </Card>
-      </section>
+      </section>}
 
-      <section className="l-week-weather">
-
+      {data5Days && <section className="l-week-weather">
         <h1 className="l-week-weather__title">Forecast for the next 5 days</h1>
-
         <div className="l-week-weather__cards">
-          {data.map(({ day, icon, temperature, weather }) => (
-            <Card>
+          {getFiveDays(data5Days?.list).map((data) => (
+            <Card key={data?.dt}>
               <div className="m-card__info m-card__info--week">
-                <span>{day}</span>
-                <span className="m-card__info--icon">{icon}</span>
-                <span>{temperature}</span>
-                <span>{weather}</span>
+                <span>{data?.main.temp}°C</span>
+                <img
+                  className="m-card__info--icon"
+                  src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
+                />
+                <span>{data?.day}</span>
+                <span className="m-card__info--description">{data?.weather[0].description}</span>
               </div>
             </Card>
           ))}
         </div>
-      </section>
+      </section>}
 
     </main>
-  )
+  );
+
 }
 
 export default App
