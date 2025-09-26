@@ -1,11 +1,18 @@
 @use '../base/variables' as *;
 @use './mixins' as *;
+@use './breakpoint' as *;
 
 $bd-radius: 0.8rem;
 
 .m-search{
   @include display-flex($direction: row);
   width: 100%;
+
+  @include respond-to(md){
+    width: 30%;
+    min-width: 400px;
+    margin: auto;
+  }
 
   &__input{
     @include input();

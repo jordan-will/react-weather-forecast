@@ -1,11 +1,12 @@
 import { Card } from "@components/Card"
-import { Search } from "@components/search"
+import { Search } from "@components/Search"
 
 const data = [
   { id: 1, day: "Sun", icon: "☀️", temperature: '19/20Cº', weather: 'Sky Clear' },
   { id: 2, day: "Mon", icon: "🌤️", temperature: '21/20Cº', weather: 'Storm Thunder' },
   { id: 3, day: "Tue", icon: "🌧️", temperature: '17/20Cº', weather: 'Raining' },
   { id: 4, day: "Wed", icon: "⛈️", temperature: '16/20Cº', weather: 'Cloudy' },
+  { id: 5, day: "Thu", icon: "🌥️", temperature: '18/20Cº', weather: 'Partly Cloudy' },
 ]
 
 const App = () => {
@@ -31,16 +32,21 @@ const App = () => {
       </section>
 
       <section className="l-week-weather">
-        {data.map(({ day, icon, temperature, weather }) => (
-          <Card>
-            <div className="m-card__info m-card__info--week">
-              <span>{day}</span>
-              <span className="m-card__info--icon">{icon}</span>
-              <span>{temperature}</span>
-              <span>{weather}</span>
-            </div>
-          </Card>
-        ))}
+
+        <h1 className="l-week-weather__title">Forecast for the next 5 days</h1>
+
+        <div className="l-week-weather__cards">
+          {data.map(({ day, icon, temperature, weather }) => (
+            <Card>
+              <div className="m-card__info m-card__info--week">
+                <span>{day}</span>
+                <span className="m-card__info--icon">{icon}</span>
+                <span>{temperature}</span>
+                <span>{weather}</span>
+              </div>
+            </Card>
+          ))}
+        </div>
       </section>
 
     </main>

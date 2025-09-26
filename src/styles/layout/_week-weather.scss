@@ -1,7 +1,22 @@
 @use '../base/variables' as *;
 @use '../module/mixins' as *;
+@use '../module/breakpoint' as *;
 
-.l-week-weather{
+.l-week-weather {
   @include section();
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+
+  &__title{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__cards {
+    @include respond-to(sm) {
+      @include display-flex($direction: row);
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
 }

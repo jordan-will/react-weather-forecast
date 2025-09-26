@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 576px,   // biggest smartphones
+  md: 768px,   // tablets
+  lg: 992px,   // laptops
+  xl: 1200px   // biggest desktops
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "The breakpoint `#{$breakpoint}` does not exist on map";
+  }
+}
