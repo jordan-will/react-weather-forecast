@@ -5,14 +5,6 @@ import { Search } from "@components/Search"
 import { useWeatherAPI } from "hooks/useWeatherAPI";
 import { getFiveDays } from "utils/getFiveDays";
 
-const dataTest = [
-  { id: 1, day: "Sun", icon: "☀️", temperature: '19/20Cº', weather: 'Sky Clear' },
-  { id: 2, day: "Mon", icon: "🌤️", temperature: '21/20Cº', weather: 'Storm Thunder' },
-  { id: 3, day: "Tue", icon: "🌧️", temperature: '17/20Cº', weather: 'Raining' },
-  { id: 4, day: "Wed", icon: "⛈️", temperature: '16/20Cº', weather: 'Cloudy' },
-  { id: 5, day: "Thu", icon: "🌥️", temperature: '18/20Cº', weather: 'Partly Cloudy' },
-]
-
 const App = () => {
 
   const [city, setCity] = useState<string | null>(null);
